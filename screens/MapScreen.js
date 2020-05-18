@@ -8,6 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 import { render } from 'react-dom';
+import DropBoxMarker from '../components/DropBoxMarker';
 
 export default class MapScreen extends React.Component {
 
@@ -63,6 +64,7 @@ render(){
             coordinate={marker.LatLng}
             title={marker.id}
           >
+            <DropBoxMarker color = '#3f4' percentage = {23}/>
 
           </Marker>
       })}
