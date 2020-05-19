@@ -1,69 +1,80 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import React, {useState, useEffect} from 'react';
-import MapView from 'react-native-maps';
+import React from 'react';
+import MapView, { Marker} from 'react-native-maps';
 import { Image, Platform, StyleSheet, Text, Dimensions, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 import { render } from 'react-dom';
+import DropBoxMarker from '../components/DropBoxMarker';
 
-export default function HomeScreen() {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [intialRegion, setInitialRegion] = useState(null);
-  const [region, setRegion] = useState(null);
+export default class MapScreen extends React.Component {
 
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if(status !== 'granted'){
-        setErrorMsg('Permission to access location was denied');
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      let region = {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.092,
-        longitudeDelta: 0.043
-      };
-      
-      setInitialRegion(region);
-
-    })();
-  });
+constructor(){
+  super();
+  this.state = {
+    region: {
+      latitude: 43.080330,
+      longitude: -88.075455,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0412
+    },
+    userlatitude: 0,
+    userlongitude: 0,
+    markers: [
+    {id: "1", LatLng: {latitude: 43.086364, longitude:-88.070863}},
+    {id: "2", LatLng: {latitude: 43.085612, longitude:-88.066721}},
+    {id: "3", LatLng: {latitude: 43.075660, longitude:-88.066142}},
+    {id: "4", LatLng: {latitude: 43.075252, longitude:-88.068459}},
+    {id: "5", LatLng: {latitude: 43.079756, longitude:-88.087813}}
+  ]
+  
+  }
+}
 
 
-  if(errorMsg){
-    text = errorMsg;
+getLocation = async () =>{
+  let {status} = await Permissions.askAsync(Permissions.LOCATION);
+  if(status !== 'granted'){
+    Console.log('Permission was not granted');
   }
 
-//TODO: Initial region does not work initialy and region still needs some work
-// After some research I found that onMapReady could be used in a solution but I
-//Do not know how to use it within a mapview tag
-  return (
-    <View style={styles.container}>
-      <MapView 
-        style = {styles.mapStyle} 
-        showsUserLocation = {true}
-        initialRegion = {intialRegion}
-        onRegionChange={(newRegion) => setRegion(newRegion)}
+  let location = await Location.getLastKnownPositionAsync({});
+  this.setState({userlatitude: location.coords.latitude});
+  this.setState({userlongitude: location.coords.longitude}); 
+}
 
-        >
+
+onComponentWillMount(){
+  this.getLocation();
+}
+
+render(){
+  return(
+    <View style = {styles.container}>
+      <MapView style = {styles.mapStyle}
+      showsUserLocation
+      region = {this.state.region}
+      onRegionChangeComplete = {(region) =>this.setState({region})}
+      >
+      {this.state.markers.map((marker) => {
+          return <Marker
+            coordinate={marker.LatLng}
+            title={marker.id}
+          >
+            <DropBoxMarker color = '#3f4' percentage = {23}/>
+
+          </Marker>
+      })}
+
       </MapView>
     </View>
   );
 }
 
-
-HomeScreen.navigationOptions = {
-  header: null,
-};
-
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -76,86 +87,5 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+
 });
