@@ -24,7 +24,7 @@ export default class App extends React.Component {
 
 
     <View>
-     <Text style ={styles.titleFText}>Enter your email below and we will send you a link to recover your password.</Text>
+     <Text style ={styles.titleFText}>Enter your email below to recover your password.</Text>
      </View>
 
         <View style={styles.inputView} >
@@ -53,13 +53,16 @@ const styles = StyleSheet.create({
     },
     inputView:{
         width:"80%",
-        backgroundColor:"white",
+        //backgroundColor:"white",
         borderRadius:25,
-        height:50,
+        height:30,
         marginBottom:20,
         justifyContent:"center",
-        padding:20
-      },
+        padding:15,
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
+        top: -35
+      }, 
       submitBtn:{
         width:"80%",
         backgroundColor:"#fb5b5a",
@@ -68,10 +71,14 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
       },
+      inputText:{
+        height:50,
+        color:"#003f5c"
+      },
       titleFText:{
         height:100,
         fontFamily: "monospace",
-        color:"black",
+        color:"white",
         fontSize:20,
         flexWrap: 'wrap',
         top: -50,

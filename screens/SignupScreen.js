@@ -22,68 +22,71 @@ export default class App extends React.Component {
   render(){
     return (
 
-        <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
+    <KeyboardAvoidingView
+    behavior={Platform.OS == "ios" ? "padding" : "height"}
+    style={styles.container}
+    >
 
-     <View>
-     <Text style = {styles.titleText}>Create Account</Text>
-     </View>
-
-     <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="First Name" 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({firstName:text})}/>
-        </View>
-
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Last Name" 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({lastName:text})}/>
-        </View>
-
-     <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Email" 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({email:text})}/>
-        </View>
-
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Password" 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({password:text})}/>
-        </View>
-
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Confirm Password" 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({confirmedPassword:text})}/>
+        <View>
+        <Text style = {styles.titleText}>Create Account</Text>
         </View>
         
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Vendor" 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({vendor:text})}/>
-        </View>
+        <View style = {styles.formContainer}>
+            <View style={styles.inputView} >
+                <TextInput  
+                    style={styles.inputText}
+                    placeholder="First Name" 
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => this.setState({firstName:text})}/>
+            </View>
 
-        <TouchableOpacity style={styles.submitBtn} >
-          <Text style={styles.loginText}>Submit</Text>
-        </TouchableOpacity>
+            <View style={styles.inputView} >
+                <TextInput  
+                    style={styles.inputText}
+                    placeholder="Last Name" 
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => this.setState({lastName:text})}/>
+            </View>
+
+            <View style={styles.inputView} >
+                <TextInput  
+                    style={styles.inputText}
+                    placeholder="Email" 
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => this.setState({email:text})}/>
+                </View>
+
+            <View style={styles.inputView} >
+                <TextInput  
+                    style={styles.inputText}
+                    placeholder="Password" 
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => this.setState({password:text})}/>
+            </View>
+
+            <View style={styles.inputView} >
+                <TextInput  
+                    style={styles.inputText}
+                    placeholder="Confirm Password" 
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => this.setState({confirmedPassword:text})}/>
+            </View>
+                
+            <View style={styles.inputView} >
+                <TextInput  
+                    style={styles.inputText}
+                    placeholder="Vendor" 
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => this.setState({vendor:text})}/>
+            </View>
+
+         </View>
+
+            <TouchableOpacity style={styles.submitBtn} >
+            <Text style={styles.loginText}>Submit</Text>
+            </TouchableOpacity>
   
-      </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
     );
   }
 }
@@ -95,18 +98,26 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    formContainer: {
+        top:-45,
+        justifyContent: 'center',
+        width: "100%",
+        alignItems: 'center',
+    },
     inputText:{
         height:50,
-        color:"white"
+        color:"#003f5c"
       },
       inputView:{
         width:"80%",
-        backgroundColor:"white",
+        //backgroundColor:"white",
         borderRadius:25,
-        height:50,
+        height:30,
         marginBottom:20,
         justifyContent:"center",
-        padding:20
+        padding:15,
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
       }, 
       submitBtn:{
         width:"80%",
@@ -115,6 +126,7 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:"center",
         justifyContent:"center",
+        top: -15
       },
       formText:{
         height:50,
@@ -123,9 +135,9 @@ const styles = StyleSheet.create({
       },
       titleText:{
         height:100,
-        fontFamily: "Helvetica-BoldOblique",
+        fontFamily: "monospace",
         color:"white",
-        top:25,
+        top:-25,
         fontSize:35,
 
       }

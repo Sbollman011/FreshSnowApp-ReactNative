@@ -3,6 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
+import { Stitch, AnonymousCredential } from 'mongodb-stitch-react-native-sdk';
+
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
