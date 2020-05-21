@@ -25,8 +25,8 @@ export default function App(props) {
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} options= {{ title: 'Encora' }} />
             <Stack.Screen name="Map" component={BottomTabNavigator} options = {{headerLeft: null}} />
-            <Stack.Screen name="Signup" component={SignupScreen} options= {{ title: 'Encora' }, {headerBackTitle:'Back'}} />
-            <Stack.Screen name="Forgot" component={ForgotPasswordScreen} options= {{ title: 'Encora' }, {headerBackTitle:'Back'}} />
+            <Stack.Screen name="Signup" component={SignupScreen} options= {{ title: 'Encora' , headerBackTitle:'Back'}} />
+            <Stack.Screen name="Forgot" component={ForgotPasswordScreen} options= {{ title: 'Encora' , headerBackTitle:'Back'}} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
