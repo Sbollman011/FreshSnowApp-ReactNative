@@ -4,22 +4,42 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
 
 export default class App extends React.Component {
+    state={
+        email:"",
+      }
 
   render(){
     return (
+        <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+   
 
-      <View style={styles.container}>
 
-     <Text>Retrieve Password Here!</Text>
+    <View>
+     <Text style ={styles.titleFText}>Enter your email below and we will send you a link to recover your password.</Text>
+     </View>
 
-  
-      </View>
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Email..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({email:text})}/>
+        </View>
+
+        <TouchableOpacity style={styles.submitBtn} >
+          <Text style={styles.loginText}>Submit</Text>
+        </TouchableOpacity>
+
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -30,5 +50,33 @@ const styles = StyleSheet.create({
       backgroundColor: 'lightgreen',
       alignItems: 'center',
       justifyContent: 'center',
-    }
+    },
+    inputView:{
+        width:"80%",
+        backgroundColor:"white",
+        borderRadius:25,
+        height:50,
+        marginBottom:20,
+        justifyContent:"center",
+        padding:20
+      },
+      submitBtn:{
+        width:"80%",
+        backgroundColor:"#fb5b5a",
+        borderRadius:25,
+        height:50,
+        alignItems:"center",
+        justifyContent:"center",
+      },
+      titleFText:{
+        height:100,
+        fontFamily: "monospace",
+        color:"black",
+        fontSize:20,
+        flexWrap: 'wrap',
+        top: -50,
+        marginLeft: 25,
+        marginRight: 25
+
+      }
 });
