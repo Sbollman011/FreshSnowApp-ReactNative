@@ -8,6 +8,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button } fr
 import { createStackNavigator } from '@react-navigation/stack';
 
 
+
 export default class App extends React.Component {
   state={
     email:"",
@@ -36,13 +37,19 @@ export default class App extends React.Component {
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({password:text})}/>
         </View>
-        <TouchableOpacity>
+
+        <TouchableOpacity onPress={() =>
+            this.props.navigation.navigate('Forgot')}>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
+
+        <TouchableOpacity style={styles.loginBtn}  onPress={() =>
+            this.props.navigation.navigate('Map')}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+
+        <TouchableOpacity onPress={() =>
+            this.props.navigation.navigate('Signup')}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
 

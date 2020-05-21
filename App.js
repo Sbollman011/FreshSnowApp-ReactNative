@@ -6,6 +6,9 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
+import HomeScreen from './screens/HomeScreen';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import SignupScreen from  './screens/SignupScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,8 +22,11 @@ export default function App(props) {
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeScreen} options= {{ title: 'Encora' }} />
+            <Stack.Screen name="Map" component={BottomTabNavigator} options = {{headerLeft: null}} />
+            <Stack.Screen name="Signup" component={SignupScreen} options= {{ title: 'Encora' }, {headerBackTitle:'Back'}} />
+            <Stack.Screen name="Forgot" component={ForgotPasswordScreen} options= {{ title: 'Encora' }, {headerBackTitle:'Back'}} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
