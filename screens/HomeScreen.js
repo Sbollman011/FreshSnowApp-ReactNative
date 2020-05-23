@@ -4,8 +4,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button,Keyboard,KeyboardAvoidingView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+
 
 
 export default class App extends React.Component {
@@ -16,11 +18,15 @@ export default class App extends React.Component {
   render(){
     return (
 
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
 
         <Image
            style = {styles.logo}
            source={require('./img/encoraLogo.png')} />
+
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
@@ -28,6 +34,7 @@ export default class App extends React.Component {
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({email:text})}/>
         </View>
+
         <View style={styles.inputView} >
           <TextInput  
             secureTextEntry
@@ -36,18 +43,24 @@ export default class App extends React.Component {
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({password:text})}/>
         </View>
-        <TouchableOpacity>
+
+        <TouchableOpacity onPress={() =>
+            this.props.navigation.navigate('Forgot')}>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
+
+        <TouchableOpacity style={styles.loginBtn}  onPress={() =>
+            this.props.navigation.navigate('Map')}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+
+        <TouchableOpacity onPress={() =>
+            this.props.navigation.navigate('Signup')}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
 
   
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -76,7 +89,7 @@ const styles = StyleSheet.create({
 
   inputView:{
     width:"80%",
-    backgroundColor:"grey",
+    backgroundColor:"white",
     borderRadius:25,
     height:50,
     marginBottom:20,
@@ -85,7 +98,7 @@ const styles = StyleSheet.create({
   },
   inputText:{
     height:50,
-    color:"white"
+    color:"#003f5c"
   },
   forgot:{
     color:"white",
