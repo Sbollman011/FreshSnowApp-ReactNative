@@ -63,6 +63,7 @@ export default function App(props) {
           </Stack.Navigator>
         </NavigationContainer>
       </View>
+      
     );
   }
 }

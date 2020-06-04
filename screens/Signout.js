@@ -15,9 +15,30 @@ export default class Signout extends React.Component {
         >
     
             <View>
-            <Text >Sign Out</Text>
+            <Text style ={styles.txt}>Sign Out</Text>
             </View>
             </KeyboardAvoidingView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+    img: {
+      resizeMode: 'contain',
+      height: 30,
+      width: 40,
+      padding: 5,
+      marginLeft: 5,
+  
+    },
+    txt: {
+        alignContent:"center",
+        top: 50,
+        textAlign: "center",
+    }
+  });
+  
