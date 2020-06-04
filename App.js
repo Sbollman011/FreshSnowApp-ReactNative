@@ -15,6 +15,8 @@ import HomeScreen from './screens/HomeScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import SignupScreen from  './screens/SignupScreen';
 import MapScreen from './screens/MapScreen';
+import Settings from './screens/Settings';
+import Signout from './screens/Signout';
 
 
 
@@ -25,8 +27,8 @@ function drawers({navigation}) {
   return (
       <Drawer.Navigator>
         <Drawer.Screen name="Auto-Drop Map" component={stacks} />
-        <Drawer.Screen name ="Settings" />
-        <Drawer.Screen name ="Sign Out" />
+        <Drawer.Screen name ="Settings" component={Settings} />
+        <Drawer.Screen name ="Sign Out" component={Signout} />
       </Drawer.Navigator>           
   );
 }
