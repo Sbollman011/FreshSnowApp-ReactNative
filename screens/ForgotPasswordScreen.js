@@ -9,7 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 
-export default class App extends React.Component {
+export default class ForgotPasswordScreen extends React.Component {
     state={
         email:"",
       }
