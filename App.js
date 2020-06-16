@@ -32,14 +32,27 @@ function drawers({navigation}) {
         <Drawer.Screen name ="Contact Support" component={signout} />
         <Drawer.Screen name ="Settings" component={settings} />
         <Drawer.Screen name ="Sign Out" component={signout} />
-      </Drawer.Navigator>           
-  );
+        <Drawer.Screen name ="Home Screen" component={homescreen} />
+      </Drawer.Navigator>         
+  )  
 }
 
 function settings({navigation}){
   return(
   <Stack.Navigator>
     <Stack.Screen name="encora" component={Settings} options = {{headerLeft: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+  </Stack.Navigator>
+  );
+}
+
+function homescreen({navigation}){
+  return(
+  <Stack.Navigator>
+    <Stack.Screen name="encora" component={HomeScreen} options = {{headerLeft: () => (
               <TouchableOpacity onPress={() =>
                  navigation.toggleDrawer()} >
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
