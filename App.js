@@ -27,16 +27,41 @@ function drawers({navigation}) {
   return (
       <Drawer.Navigator>
         <Drawer.Screen name="Auto-Drop Map" component={stacks} />
-        <Drawer.Screen name ="Settings" component={Settings} />
-        <Drawer.Screen name ="Sign Out" component={Signout} />
+        <Drawer.Screen name ="Settings" component={settings} />
+        <Drawer.Screen name ="Sign Out" component={signout} />
       </Drawer.Navigator>           
   );
+}
+
+function settings({navigation}){
+  return(
+  <Stack.Navigator>
+    <Stack.Screen name="Encora" component={Settings} options = {{headerLeft: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+  </Stack.Navigator>
+  );
+}
+
+function signout({navigation}){
+  return(
+  <Stack.Navigator>
+    <Stack.Screen name="Encora" component={Signout} options = {{headerLeft: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+  </Stack.Navigator>
+  );
+
 }
 
 function stacks({navigation}){
   return (
         <Stack.Navigator>
-            <Stack.Screen name="Auto-Drop Map" component={MapScreen} options = {{headerLeft: () => (
+            <Stack.Screen name="encora" component={MapScreen} options = {{headerLeft: () => (
               <TouchableOpacity onPress={() =>
                  navigation.toggleDrawer()} >
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
@@ -56,10 +81,10 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} options= {{ title: 'Encora' }} />
-            <Stack.Screen name="Map" component={drawers} options = {{title:'Encora', headerShown: false}} />
-            <Stack.Screen name="Signup" component={SignupScreen} options= {{ title: 'Encora' , headerBackTitle:'Back'}} />
-            <Stack.Screen name="Forgot" component={ForgotPasswordScreen} options= {{ title: 'Encora' , headerBackTitle:'Back'}} />
+            <Stack.Screen name="Home" component={HomeScreen} options= {{ title: 'encora' }} />
+            <Stack.Screen name="Map" component={drawers} options = {{title:'encora', headerShown: false}} />
+            <Stack.Screen name="Signup" component={SignupScreen} options= {{ title: 'encora' , headerBackTitle:'Back'}} />
+            <Stack.Screen name="Forgot" component={ForgotPasswordScreen} options= {{ title: 'encora' , headerBackTitle:'Back'}} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

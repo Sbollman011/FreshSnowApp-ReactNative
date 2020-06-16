@@ -5,6 +5,8 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button,KeyboardAvoidingView, Keyboard } from 'react-native';
 
+
+
 export default class Signout extends React.Component {
 
   render(){
