@@ -29,6 +29,7 @@ function drawers({navigation}) {
         <Drawer.Screen name="Auto-Drop Map" component={stacks} />
         <Drawer.Screen name ="Auto-Drop List" component={signout} />
         <Drawer.Screen name ="Settings" component={settings} />
+        <Drawer.Screen name ="Contact Support" component={signout} />
         <Drawer.Screen name ="Sign Out" component={signout} />
       </Drawer.Navigator>           
   );
