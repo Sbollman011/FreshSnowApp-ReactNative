@@ -27,6 +27,7 @@ function drawers({navigation}) {
   return (
       <Drawer.Navigator>
         <Drawer.Screen name="Auto-Drop Map" component={stacks} />
+        <Drawer.Screen name ="Auto-Drop List" component={signout} />
         <Drawer.Screen name ="Settings" component={settings} />
         <Drawer.Screen name ="Sign Out" component={signout} />
       </Drawer.Navigator>           
@@ -36,7 +37,7 @@ function drawers({navigation}) {
 function settings({navigation}){
   return(
   <Stack.Navigator>
-    <Stack.Screen name="Encora" component={Settings} options = {{headerLeft: () => (
+    <Stack.Screen name="encora" component={Settings} options = {{headerLeft: () => (
               <TouchableOpacity onPress={() =>
                  navigation.toggleDrawer()} >
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
@@ -48,7 +49,7 @@ function settings({navigation}){
 function signout({navigation}){
   return(
   <Stack.Navigator>
-    <Stack.Screen name="Encora" component={Signout} options = {{headerLeft: () => (
+    <Stack.Screen name="encora" component={Signout} options = {{headerLeft: () => (
               <TouchableOpacity onPress={() =>
                  navigation.toggleDrawer()} >
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
