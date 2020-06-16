@@ -8,8 +8,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button,Keyb
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-
-export default class App extends React.Component {
+export default class SignupScreen extends React.Component {
     state={
         lastName:"",
         firstName:"",

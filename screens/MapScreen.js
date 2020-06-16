@@ -3,8 +3,13 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import React from 'react';
 import MapView, { Marker} from 'react-native-maps';
-import { Image, Platform, StyleSheet, Text, Dimensions, View } from 'react-native';
+import { Image, Platform, StyleSheet, Text, Dimensions, View, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
 
 import { MonoText } from '../components/StyledText';
 import { render } from 'react-dom';
@@ -54,6 +59,7 @@ onComponentWillMount(){
 render(){
   return(
     <View style = {styles.container}>
+
       <MapView style = {styles.mapStyle}
       showsUserLocation
       region = {this.state.region}
