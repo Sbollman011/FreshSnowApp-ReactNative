@@ -1,87 +1,366 @@
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
-import { MonoText } from '../components/StyledText';
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Button,Keyboard,KeyboardAvoidingView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer} from '@react-navigation/native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+import useCachedResources from '../hooks/useCachedResources';
+import LinkingConfiguration from '../navigation/LinkingConfiguration';
+import 'react-native-gesture-handler';
+import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, Image, Button,Keyboard,KeyboardAvoidingView } from 'react-native';
+import { Video } from 'expo-av';
+import {Dimensions} from 'react-native';
 
 
 
 
 export default class App extends React.Component {
+
+  
   state={
-    email:"",
-    password:""
+
+    dataIsReturned: false,
+
+    snoqSnow24: "0",
+    snoqSnowSeason: "0",
+    snoqWeatherTemp: "0",
+
+    crystalSnow24: "0",
+    crystalSnowSeason: "0",
+    crystalWeatherTemp: "0",
+
+    bakerSnow24: "0",
+    bakerSnowSeason: "0",
+    bakerWeatherTemp : "0",
+
+    whiteSnow24: "0",
+    whiteSnowSeason: "0",
+    WhiteWeatherTemp: "0",
+
+    stevenSnow24: "0",
+    stevenSnowSeason: "0",
+    stevenWeatherTemp: "0",
+
+    loading: false,
+    fromFetch: false
   }
+
   
-  render(){
+
+   setMeasurementsSnoq() {
+      this.setState({
+        fromFetch: true,
+        loading: true,
+
+    })
+    fetch("https://pnwsnowapi.herokuapp.com/snoqualmie",)
+        .then(response => response.json())
+        .then((responseJson) => {
+            console.log('getting data from fetch', responseJson)
+            setTimeout(() => {
+                this.setState({
+                    loading: false,
+                    snoqSnow24: JSON.parse(responseJson.snoqSnow24API),
+                    snoqSnowSeason: JSON.parse(responseJson.snoqSnowSeasonAPI),
+                    snoqWeatherTemp: JSON.parse(responseJson.snoqWeatherTempAPI)
+                })
+            }, 2000)
+
+        })
+        .catch(error => console.log(error))
+};
+
+
+setMeasurementsBaker() {
+  this.setState({
+    fromFetch: true,
+    loading: true,
+
+})
+fetch("https://pnwsnowapi.herokuapp.com/baker",)
+    .then(response => response.json())
+    .then((responseJson) => {
+        console.log('getting data from fetch', responseJson)
+        setTimeout(() => {
+            this.setState({
+                loading: false,
+                bakerSnow24: JSON.parse(responseJson.bakerSnow24API),
+                bakerSnowSeason: JSON.parse(responseJson.bakerSnowSeasonAPI),
+                bakerWeatherTemp: JSON.parse(responseJson.bakerWeatherTempAPI)
+
+            })
+        }, 2000)
+
+    })
+    .catch(error => console.log(error))
+};
+
+setMeasurementsWhitePass() {
+  this.setState({
+    fromFetch: true,
+    loading: true,
+
+})
+fetch("https://pnwsnowapi.herokuapp.com/whitepass",)
+    .then(response => response.json())
+    .then((responseJson) => {
+        console.log('getting data from fetch', responseJson)
+        setTimeout(() => {
+            this.setState({
+                loading: false,
+                whiteSnow24: JSON.parse(responseJson.whiteSnow24API),
+                whiteSnowSeason: JSON.parse(responseJson.whiteSnowSeasonAPI),
+                whiteWeatherTemp: JSON.parse(responseJson.whiteWeatherTempAPI),
+            })
+        }, 2000)
+
+    })
+    .catch(error => console.log(error))
+};
+
+setMeasurementsStevens() {
+  this.setState({
+    fromFetch: true,
+    loading: true,
+
+})
+fetch("https://pnwsnowapi.herokuapp.com/stevens",)
+    .then(response => response.json())
+    .then((responseJson) => {
+        console.log('getting data from fetch', responseJson)
+        setTimeout(() => {
+            this.setState({
+                loading: false,
+                stevenSnow24: JSON.parse(responseJson.stevenSnow24API),
+                stevenSnowSeason: JSON.parse(responseJson.stevenSnowSeasonAPI)
+            })
+        }, 10000)
+
+    })
+    .catch(error => console.log(error))
+};
+
+setMeasurementsCrystal() {
+  this.setState({
+    fromFetch: true,
+    loading: true,
+
+})
+fetch("https://pnwsnowapi.herokuapp.com/crystal",)
+    .then(response => response.json())
+    .then((responseJson) => {
+        console.log('getting data from fetch', responseJson)
+        setTimeout(() => {
+            this.setState({
+                loading: false,
+                crystalSnow24: JSON.parse(responseJson.crystalSnow24API),
+                crystalSnowSeason: JSON.parse(responseJson.crystalSnowSeasonAPI)
+            })
+        }, 2000)
+
+    })
+    .catch(error => console.log(error))
+};
+
+
+
+  componentDidMount(){ 
+  this.setMeasurementsSnoq();
+  this.setMeasurementsBaker();
+  this.setMeasurementsWhitePass();
+  this.setMeasurementsStevens();
+  this.setMeasurementsCrystal();
+  
+};
+
+  
+
+
+render(){
+
+  const { width } = Dimensions.get('window');
+  const { height } = Dimensions.get('window');
+
     return (
+      
+      
 
-      <KeyboardAvoidingView
-      behavior={Platform.OS == "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
+  <View style = {styles.container}>
 
-        <Image
-           style = {styles.logo}
-           source={require('./img/encoraLogo.png')} />
+<Video
+          source={require('./production ID_4185213.mp4')}
+          style={ styles.backgroundVideo}
+          shouldPlay={true}
+          isLooping = {true}
+          resizeMode="cover"
+          isMuted={false}
+        />
 
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Email..." 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({email:text})}/>
-        </View>
 
-        <View style={styles.inputView} >
-          <TextInput  
-            secureTextEntry
-            style={styles.inputText}
-            placeholder="Password..." 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({password:text})}/>
-        </View>
+    <ScrollView style = {styles.reportsView}>
 
-        <TouchableOpacity onPress={() =>
-            this.props.navigation.navigate('Forgot')}>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
+    <Text style = {styles.logoTitle}> Snow Report </Text>
 
-        <TouchableOpacity style={styles.loginBtn}  onPress={() =>
-            this.props.navigation.navigate('Map')}>
-          <Text style={styles.loginText}>LOGIN</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate('Snoqualmie')}>
+          <Text style = {styles.logo}>
+            Summit at Snoqualmie
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.snoqSnow24}" | Base: {this.state.snoqSnowSeason}"" | Temp: {this.state.snoqWeatherTemp}°
+          </Text>
+       </TouchableOpacity>
+     
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("Crystal")}>
+          <Text style = {styles.logo}>
+            Crystal Mountain
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.crystalSnow24}" | Base: {this.state.crystalSnowSeason}" | Temp: {this.state.snoqWeatherTemp}°
+          </Text>
+       </TouchableOpacity>
 
-        <TouchableOpacity onPress={() =>
-            this.props.navigation.navigate('Signup')}>
-          <Text style={styles.loginText}>Signup</Text>
-        </TouchableOpacity>
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("Stevens")}>
+          <Text style = {styles.logo}>
+            Steven's Pass
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.stevenSnow24}" | Base: {this.state.stevenSnowSeason}" | Temp: {this.state.snoqWeatherTemp}°
+          </Text>
+       </TouchableOpacity>
 
-  
-      </KeyboardAvoidingView>
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("Baker")}>
+          <Text style = {styles.logo}>
+            Mount Baker
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.bakerSnow24}" | Base: {this.state.bakerSnowSeason}" | Temp: {this.state.bakerWeatherTemp}°
+          </Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("WhitePass")}>
+          <Text style = {styles.logo}>
+            White Pass
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.whiteSnow24}" | Base: {this.state.whiteSnowSeason}" | Temp: {this.state.whiteWeatherTemp}°
+          </Text>
+       </TouchableOpacity>
+
+       <Text style = {styles.logoTitle}> Weather Report </Text>
+
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate('Snoqualmie')}>
+          <Text style = {styles.logo}>
+            Summit at Snoqualmie
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.snoqSnow24}" | Base: {this.state.snoqSnowSeason}"
+          </Text>
+       </TouchableOpacity>
+     
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("Crystal")}>
+          <Text style = {styles.logo}>
+            Crystal Mountain
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.crystalSnow24}" | Base: {this.state.crystalSnowSeason}"
+          </Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("Stevens")}>
+          <Text style = {styles.logo}>
+            Steven's Pass
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.stevenSnow24}" | Base: {this.state.stevenSnowSeason}"
+          </Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("Baker")}>
+          <Text style = {styles.logo}>
+            Mount Baker
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.bakerSnow24}" | Base: {this.state.bakerSnowSeason}"
+          </Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity style = {styles.boxes} onPress={() =>
+            this.props.navigation.navigate("WhitePass")}>
+          <Text style = {styles.logo}>
+            White Pass
+          </Text>
+          <Text style = {styles.subLogo}>
+            24hr: {this.state.whiteSnow24}" | Base: {this.state.whiteSnowSeason}"
+          </Text>
+       </TouchableOpacity>
+
+
+       </ScrollView>
+       </View>
+
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'lightgreen',
-    alignItems: 'center',
-    justifyContent: 'center',
+        flex: 1,
+    backgroundColor: 'black',
+    alignItems: 'center'
   },
+  boxes: {
+    width:300,
+    borderColor: 'black',
+    position: 'relative',
+    alignItems: 'center',
+    height:58,
+    marginBottom:16,
+    padding: 15,
+    justifyContent:"top",
+    borderBottomColor: 'gray',
+  },
+  logoTitle:{
+    marginTop: "8%",
+    marginBottom: "1%",
+    fontWeight:"bold",
+    color: '#ffffffff',
+    fontSize: 30,
+    alignItems: 'center',
+    alignContent: "center",
+    marginLeft: '10%'
+
+
+    },
   logo:{
     fontWeight:"bold",
-    height: 100,
-    width:"40%",
-    resizeMode: 'contain',
-    position: 'absolute',
-    top: 50
-  },
-  
+    color: '#ffffffff',
+    fontSize: 20,
+    alignItems: 'left'
+
+    },
+    subLogo: {
+      fontSize:16,
+      color: 'white'
+    },
+    reportsView:{
+      width: '100%',
+      height: '100%',
+      backgroundColor:  'rgba(52, 52, 52, 0.45)',
+      alignItems: 'center'
+
+    },
   mapButton:{
     position: "absolute",
     top: 0,
@@ -117,5 +396,13 @@ const styles = StyleSheet.create({
   },
   loginText:{
     color:"white"
-  }
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
 });
+
