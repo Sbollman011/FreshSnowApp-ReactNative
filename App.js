@@ -68,7 +68,7 @@ function snoqualmie({navigation}){
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>), headerLeft: () => (
                <HeaderBackButton onPress={() =>
-                  navigation.navigate('Home Screen')
+                  navigation.navigate('Home')
                   } title = "Home"
                   />
               )}}/>
@@ -85,7 +85,7 @@ function baker({navigation}){
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>), headerLeft: () => (
                <HeaderBackButton onPress={() =>
-                  navigation.navigate('Home Screen')
+                  navigation.navigate('Home')
                   } title = "Home"
                   />
               )}}/>
@@ -103,7 +103,7 @@ function crystal({navigation}){
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>), headerLeft: () => (
                <HeaderBackButton onPress={() =>
-                  navigation.navigate('Home Screen')
+                  navigation.navigate('Home')
                   } title = "Home"
                   />
               )}}/>
@@ -120,7 +120,7 @@ function whitePass({navigation}){
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>), headerLeft: () => (
                <HeaderBackButton onPress={() =>
-                  navigation.navigate('Home Screen')
+                  navigation.navigate('Home')
                   } title = "Home"
                   />
               )}}/>
@@ -137,7 +137,7 @@ function stevens({navigation}){
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>), headerLeft: () => (
                <HeaderBackButton onPress={() =>
-                  navigation.navigate('Home Screen')
+                  navigation.navigate('Home')
                   } title = "Home"
                   />
               )}}/>
@@ -154,7 +154,7 @@ function info({navigation}){
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>), headerLeft: () => (
                <HeaderBackButton onPress={() =>
-                  navigation.navigate('Home Screen')
+                  navigation.navigate('Home')
                   } title = "Home"
                   />
               )}}/>
@@ -177,7 +177,7 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={drawers} options= {{ title: 'PNW Snow Report', headerShown: false , headerRight: () => (
+            <Stack.Screen name="HomeScreen" component={drawers} options= {{ title: 'PNW Snow Report', headerShown: false , headerRight: () => (
               <TouchableOpacity onPress={() =>
                  navigation.toggleDrawer()} >
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
