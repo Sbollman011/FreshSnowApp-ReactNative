@@ -50,14 +50,6 @@ function drawers({navigation}) {
         <Drawer.Screen name ="Crystal Mountain Website" component={crystalTab} />
         <Drawer.Screen name ="White Pass Website" component={whiteTab} />
         <Drawer.Screen name ="Stevens Pass Website" component={stevenTab} />
-        <Drawer.Screen name ="Information" component={infoTab} />
-        <Drawer.Screen name ="Lift Tickets" component={ticketsTab} />
-        <Drawer.Screen name ="Map" component={mapsTab} />
-        <Drawer.Screen name="Snoqualmie Tickets" component={snoqTicketsTab} />
-        <Drawer.Screen name ="Mt. Baker Tickets" component={bakerTicketsTab} />
-        <Drawer.Screen name ="Crystal Mountain Tickets" component={crystalTicketsTab} />
-        <Drawer.Screen name ="White Pass Tickets" component={whiteTicketsTab} />
-        <Drawer.Screen name ="Stevens Pass Tickets" component={stevenTicketsTab} />
 
       </Drawer.Navigator>         
   )  
