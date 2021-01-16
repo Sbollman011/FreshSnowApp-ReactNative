@@ -1,6 +1,11 @@
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Foundation } from '@expo/vector-icons'; 
+
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -19,27 +24,45 @@ import StevensSite from './screens/StevensSite'
 import BakerSite from './screens/BakerSite'
 import CrystalSite from './screens/CrystalSite'
 import infoScreen from './screens/infoScreen'
+import MapScreen from './screens/MapScreen'
+import liftTickets from './screens/liftTickets'
+import SnoqualmieTicketSite from './screens/SnoqualmieTicketSite';
+import BakerTicketSite from './screens/BakerTicketSite';
+import CrystalTicketSite from './screens/CrystalTicketSite';
+import WhitePassTicketSite from './screens/WhitePassTicketSite';
+import StevensTicketSite from './screens/StevensTicketSite';
 import WebView from 'react-native-webview'
 import { HeaderBackButton } from '@react-navigation/stack';
 
 
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
+
 
 function drawers({navigation}) {
   return (
       <Drawer.Navigator drawerPosition = "right">
-        <Drawer.Screen name ="Home" component={homescreen} />
-        <Drawer.Screen name="Snoqualmie Pass Website" component={snoqualmie} />
-        <Drawer.Screen name ="Mt. Baker Website" component={baker} />
-        <Drawer.Screen name ="Crystal Mountain Website" component={crystal} />
-        <Drawer.Screen name ="White Pass Website" component={whitePass} />
-        <Drawer.Screen name ="Stevens Pass Website" component={stevens} />
-        <Drawer.Screen name ="Information" component={info} />
+        <Drawer.Screen name ="Snow Report" component={homeTab} />
+        <Drawer.Screen name="Snoqualmie Pass Website" component={snoqTab} />
+        <Drawer.Screen name ="Mt. Baker Website" component={bakerTab} />
+        <Drawer.Screen name ="Crystal Mountain Website" component={crystalTab} />
+        <Drawer.Screen name ="White Pass Website" component={whiteTab} />
+        <Drawer.Screen name ="Stevens Pass Website" component={stevenTab} />
+        <Drawer.Screen name ="Information" component={infoTab} />
+        <Drawer.Screen name ="Lift Tickets" component={ticketsTab} />
+        <Drawer.Screen name ="Map" component={mapsTab} />
+        <Drawer.Screen name="Snoqualmie Tickets" component={snoqTicketsTab} />
+        <Drawer.Screen name ="Mt. Baker Tickets" component={bakerTicketsTab} />
+        <Drawer.Screen name ="Crystal Mountain Tickets" component={crystalTicketsTab} />
+        <Drawer.Screen name ="White Pass Tickets" component={whiteTicketsTab} />
+        <Drawer.Screen name ="Stevens Pass Tickets" component={stevenTicketsTab} />
 
       </Drawer.Navigator>         
   )  
 }
+
 
 function homescreen({navigation}){
   return(
@@ -162,6 +185,899 @@ function info({navigation}){
   );
 }
 
+function tickets({navigation}){
+  return (
+        <Stack.Navigator>
+            <Stack.Screen name="PNW Ski Report" component={liftTickets} options = {{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+          </Stack.Navigator>
+  );
+}
+
+function maps({navigation}){
+  return (
+        <Stack.Navigator>
+            <Stack.Screen name="PNW Ski Report" component={MapScreen} options = {{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+          </Stack.Navigator>
+  );
+}
+
+function snoqualmietickets({navigation}){
+  return(
+  <Stack.Navigator>
+    <Stack.Screen name="PNW Ski Report" component={SnoqualmieTicketSite} options= {{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+  </Stack.Navigator>
+  );
+}
+
+function bakertickets({navigation}){
+  return(
+  <Stack.Navigator>
+    <Stack.Screen name="PNW Ski Report" component={BakerTicketSite} options = {{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+  </Stack.Navigator>
+  );
+
+}
+
+function crystaltickets({navigation}){
+  return (
+        <Stack.Navigator>
+            <Stack.Screen name="PNW Ski Report" component={CrystalTicketSite} options = {{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+          </Stack.Navigator>
+  );
+}
+
+function whitePasstickets({navigation}){
+  return (
+        <Stack.Navigator>
+            <Stack.Screen name="PNW Ski Report" component={WhitePassTicketSite} options ={{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+          </Stack.Navigator>
+  );
+}
+
+function stevenstickets({navigation}){
+  return (
+        <Stack.Navigator>
+            <Stack.Screen name="PNW Ski Report" component={StevensTicketSite} options = {{headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>), headerLeft: () => (
+               <HeaderBackButton onPress={() =>
+                  navigation.navigate('Home')
+                  } title = "Home"
+                  />
+              )}}/>
+          </Stack.Navigator>
+  );
+}
+
+
+function homeTab({navigation}){
+    return (
+      <Tab.Navigator initialRouteName = "Home">
+     <Tab.Screen name="Home" component={homescreen}
+    options={{
+      title: 'Home',
+      tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+      }} />
+
+    <Tab.Screen
+      name="LiftTickets"
+      component={tickets}
+      options={{
+        title: 'Tickets',
+        tabBarIcon: ({ color, size }) => (
+          <Foundation name="social-skillshare" size={size} color={color} />),
+      }}
+    />
+    
+    <Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+    <Tab.Screen
+      name="Map"
+      component={maps}
+      options={{
+      title: 'Map',
+      tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+      }}
+    />
+
+  </Tab.Navigator>
+    );
+
+}
+
+function ticketsTab({navigation}){
+  return (
+    <Tab.Navigator initialRouteName = 'LiftTickets'>
+   <Tab.Screen name="Home" component={homescreen}
+    options={{
+      title: 'Home',
+      tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+      }} />
+
+    <Tab.Screen
+      name="LiftTickets"
+      component={tickets}
+      options={{
+        title: 'Tickets',
+        tabBarIcon: ({ color, size }) => (
+          <Foundation name="social-skillshare" size={size} color={color} />),
+      }}
+    />
+    
+    <Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+    <Tab.Screen
+      name="Map"
+      component={maps}
+      options={{
+      title: 'Map',
+      tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+      }}
+    />
+
+  </Tab.Navigator>
+  );
+
+}
+
+function mapsTab(){
+  return (
+
+    
+    <Tab.Navigator initialRouteName = "Map">
+
+        
+<Tab.Screen name="Home" component={homescreen}
+    options={{
+      title: 'Home',
+      tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+      }} />
+
+    <Tab.Screen
+      name="LiftTickets"
+      component={tickets}
+      options={{
+        title: 'Tickets',
+        tabBarIcon: ({ color, size }) => (
+          <Foundation name="social-skillshare" size={size} color={color} />),
+      }}
+    />
+    
+    <Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+    <Tab.Screen
+      name="Map"
+      component={maps}
+      options={{
+      title: 'Map',
+      tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+      }}
+    />
+
+  </Tab.Navigator>
+  );
+
+}
+
+
+
+function snoqTab(){
+  return (
+  <Tab.Navigator initialRouteName = "snoqtabscreen" screenOptions={({ route }) => ({
+    tabBarButton: [
+      "snoqtabscreen",
+    ].includes(route.name)
+      ? () => {
+          return null;
+        }
+      : undefined,
+  })} >
+
+  <Tab.Screen
+    name="snoqtabscreen"
+    component={snoqualmie}
+    tabBarOptions= {{
+      labeled: false,
+    }}
+  />
+
+<Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+}
+
+function stevenTab(){
+  return (
+
+  <Tab.Navigator initialRouteName = "steventabscreen" screenOptions={({ route }) => ({
+    tabBarButton: [
+      "steventabscreen",
+    ].includes(route.name)
+      ? () => {
+          return null;
+        }
+      : undefined,
+  })} >
+
+  <Tab.Screen
+    name="steventabscreen"
+    component={StevensSite}
+    tabBarOptions= {{
+      labeled: false,
+    }}
+  />
+ <Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function crystalTab(){
+   return (
+  <Tab.Navigator initialRouteName = "crystaltabscreen" screenOptions={({ route }) => ({
+    tabBarButton: [
+      "crystaltabscreen",
+    ].includes(route.name)
+      ? () => {
+          return null;
+        }
+      : undefined,
+  })} >
+
+  <Tab.Screen
+    name="crystaltabscreen"
+    component={crystal}
+    tabBarOptions= {{
+      labeled: false,
+    }}
+  />
+ <Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function bakerTab(){
+    return (
+      <Tab.Navigator initialRouteName = "bakertabscreen" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "bakertabscreen",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="bakertabscreen"
+        component={baker}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+     <Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function whiteTab(){
+    return (
+      <Tab.Navigator initialRouteName = "whitetabsscreen" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "whitetabsscreen",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="whitetabsscreen"
+        component={whitePass}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+<Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function infoTab(){
+    return (
+      <Tab.Navigator initialRouteName = "infotabscreen" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "infotabscreen",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="infotabscreen"
+        component={info}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+    <Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function snoqTicketsTab(){
+    return (
+      <Tab.Navigator initialRouteName = "snoqticketstabscreen" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "snoqticketstabscreen",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="snoqticketstabscreen"
+        component={snoqualmietickets}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+    <Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function stevenTicketsTab(){
+    return (
+      <Tab.Navigator initialRouteName = "stevensticketstabscreen" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "stevensticketstabscreen",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="stevensticketstabscreen"
+        component={stevenstickets}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+      <Tab.Screen name="Home" component={homescreen}
+  options={{
+    title: 'Home',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />),
+
+    }} />
+
+  <Tab.Screen
+    name="LiftTickets"
+    component={tickets}
+    options={{
+      title: 'Tickets',
+      tabBarIcon: ({ color, size }) => (
+        <Foundation name="social-skillshare" size={size} color={color} />),
+    }}
+  />
+  
+<Tab.Screen name="Forecast" component={homescreen}
+    options={{
+      title: 'Forecast',
+      tabBarIcon: ({ color, size }) => (
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={color} />),
+      }} />
+
+  <Tab.Screen
+    name="Map"
+    component={maps}
+    options={{
+    title: 'Map',
+    tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+
+    }}
+  />
+
+</Tab.Navigator>
+  );
+
+}
+
+function crystalTicketsTab(){
+    return (
+      <Tab.Navigator initialRouteName = "crystalticketstabscreen" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "crystalticketstabscreen",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="crystalticketstabsscreen"
+        component={crystaltickets}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+      <Tab.Screen
+        name="LiftTickets"
+        component={liftTickets}
+        options={{
+          title: 'Tickets',
+          tabBarIcon: ({ color, size }) => (
+            <Foundation name="social-skillshare" size={size} color={color} />),
+        }}
+      />
+      
+      <Tab.Screen name="Home" component={homescreen}
+      options={{
+        title: 'Home',
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />),
+    
+        }} />
+      <Tab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+        title: 'Map',
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+    
+        }}
+      />
+    
+    </Tab.Navigator>
+  );
+
+}
+
+function bakerTicketsTab(){
+    return (
+      <Tab.Navigator initialRouteName = "bakertickettab" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "bakertickettab",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="bakertickettab"
+        component={bakertickets}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+      <Tab.Screen
+        name="LiftTickets"
+        component={liftTickets}
+        options={{
+          title: 'Tickets',
+          tabBarIcon: ({ color, size }) => (
+            <Foundation name="social-skillshare" size={size} color={color} />),
+        }}
+      />
+      
+      <Tab.Screen name="Home" component={homescreen}
+      options={{
+        title: 'Home',
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />),
+    
+        }} />
+      <Tab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+        title: 'Map',
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+    
+        }}
+      />
+    
+    </Tab.Navigator>
+  );
+
+}
+
+function whiteTicketsTab(){
+    return (
+      <Tab.Navigator initialRouteName = "whitetickettab" screenOptions={({ route }) => ({
+        tabBarButton: [
+          "whitetickettab",
+        ].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })} >
+    
+      <Tab.Screen
+        name="whitetickettab"
+        component={whitePasstickets}
+        tabBarOptions= {{
+          labeled: false,
+        }}
+      />
+      <Tab.Screen
+        name="LiftTickets"
+        component={liftTickets}
+        options={{
+          title: 'Tickets',
+          tabBarIcon: ({ color, size }) => (
+            <Foundation name="social-skillshare" size={size} color={color} />),
+        }}
+      />
+      
+      <Tab.Screen name="Home" component={homescreen}
+      options={{
+        title: 'Home',
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />),
+    
+        }} />
+      <Tab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+        title: 'Map',
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="map-outline" color={color} size={size} />),
+    
+        }}
+      />
+    
+    </Tab.Navigator>
+  );
+
+}
 
 
 
@@ -176,8 +1092,14 @@ export default function App(props) {
      <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
-        <Stack.Navigator>
-            <Stack.Screen name="HomeScreen" component={drawers} options= {{ title: 'PNW Snow Report', headerShown: false , headerRight: () => (
+        <Stack.Navigator initialRouteName = "HomeStack">
+            <Stack.Screen name="HomeStack" component={drawers} options= {{ title: 'PNW Snow Report', headerShown: false , headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+            <Stack.Screen name="Home" component={HomeScreen} options= {{ title: 'PNW Snow Report', headerShown: false , headerRight: () => (
               <TouchableOpacity onPress={() =>
                  navigation.toggleDrawer()} >
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
@@ -219,8 +1141,52 @@ export default function App(props) {
                 <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
               </TouchableOpacity>)}}/>
 
+              <Stack.Screen name= "Tickets" component={liftTickets} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+              <Stack.Screen name= "Maps" component={MapScreen} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+
+
+
+              <Stack.Screen name= "SnoqualmieTickets" component={snoqTab} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+            <Stack.Screen name= "BakerTickets" component={BakerTicketSite} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+            <Stack.Screen name= "CrystalTickets" component={CrystalTicketSite} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+            <Stack.Screen name= "StevensTickets" component={StevensTicketSite} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
+
+            <Stack.Screen name= "WhitePassTickets" component={WhitePassTicketSite} options= {{ title: 'PNW Snow Report' , headerBackTitle:'Back', headerRight: () => (
+              <TouchableOpacity onPress={() =>
+                 navigation.toggleDrawer()} >
+                <Image source={require('./screens/img/menuIcon.png')}  style={styles.img}/>
+              </TouchableOpacity>)}}/>
           </Stack.Navigator>
-        </NavigationContainer>
+        </NavigationContainer>  
       </View>
 
     );

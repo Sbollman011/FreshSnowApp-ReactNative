@@ -210,7 +210,7 @@ render(){
             Summit at Snoqualmie
           </Text>
           <Text style = {styles.subLogo}>
-            24hr: {this.state.snoqSnow24}" | Base: {this.state.snoqSnowSeason}"" | Temp: {this.state.snoqWeatherTemp}°
+            24hr: {this.state.snoqSnow24}" | Base: {this.state.snoqSnowSeason}" | Temp: {this.state.snoqWeatherTemp}°
           </Text>
        </TouchableOpacity>
      
@@ -251,58 +251,6 @@ render(){
           </Text>
           <Text style = {styles.subLogo}>
             24hr: {this.state.whiteSnow24}" | Base: {this.state.whiteSnowSeason}" | Temp: {this.state.whiteWeatherTemp}°
-          </Text>
-       </TouchableOpacity>
-
-       <Text style = {styles.logoTitle}> Weather Report </Text>
-
-       <TouchableOpacity style = {styles.boxes} onPress={() =>
-            this.props.navigation.navigate('Snoqualmie')}>
-          <Text style = {styles.logo}>
-            Summit at Snoqualmie
-          </Text>
-          <Text style = {styles.subLogo}>
-            24hr: {this.state.snoqSnow24}" | Base: {this.state.snoqSnowSeason}"
-          </Text>
-       </TouchableOpacity>
-     
-       <TouchableOpacity style = {styles.boxes} onPress={() =>
-            this.props.navigation.navigate("Crystal")}>
-          <Text style = {styles.logo}>
-            Crystal Mountain
-          </Text>
-          <Text style = {styles.subLogo}>
-            24hr: {this.state.crystalSnow24}" | Base: {this.state.crystalSnowSeason}"
-          </Text>
-       </TouchableOpacity>
-
-       <TouchableOpacity style = {styles.boxes} onPress={() =>
-            this.props.navigation.navigate("Stevens")}>
-          <Text style = {styles.logo}>
-            Steven's Pass
-          </Text>
-          <Text style = {styles.subLogo}>
-            24hr: {this.state.stevenSnow24}" | Base: {this.state.stevenSnowSeason}"
-          </Text>
-       </TouchableOpacity>
-
-       <TouchableOpacity style = {styles.boxes} onPress={() =>
-            this.props.navigation.navigate("Baker")}>
-          <Text style = {styles.logo}>
-            Mount Baker
-          </Text>
-          <Text style = {styles.subLogo}>
-            24hr: {this.state.bakerSnow24}" | Base: {this.state.bakerSnowSeason}"
-          </Text>
-       </TouchableOpacity>
-
-       <TouchableOpacity style = {styles.boxes} onPress={() =>
-            this.props.navigation.navigate("WhitePass")}>
-          <Text style = {styles.logo}>
-            White Pass
-          </Text>
-          <Text style = {styles.subLogo}>
-            24hr: {this.state.whiteSnow24}" | Base: {this.state.whiteSnowSeason}"
           </Text>
        </TouchableOpacity>
 
